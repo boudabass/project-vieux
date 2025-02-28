@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-size: 18px;
+}
+
+body {
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #333;
+}
+
+button, input, select, textarea {
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+}
+
+/* Increase tap target sizes */
+button, 
+a, 
+input[type="button"], 
+input[type="submit"] {
+  min-height: 50px;
+  min-width: 50px;
+}
+
+/* High contrast focus states */
+:focus {
+  outline: 3px solid #4C6EF5;
+  outline-offset: 2px;
+}
