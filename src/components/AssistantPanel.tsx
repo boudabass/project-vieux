@@ -25,6 +25,28 @@ const AssistantPanel: React.FC<AssistantPanelProps> = ({ messages, onSendMessage
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
 
+    const handleNewConversation = () => {
+        aiService.clearConversation();
+        onSendMessage("Nouvelle conversation démarrée.", false);
+    };
+
+    const toggleVoiceInput = () => {
+        setIsListening(!isListening);
+        if (!isListening) {
+            setTimeout(() => {
+                setIsListening(false);
+                setInputMessage('Je voudrais prendre rendez-vous');
+            }, 2000);
+        }
+    };
+
+    const handleKeyPress = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            handleSendMessage();
+        }
+    };
+
     const handleSendMessage = async () => {
         if (inputMessage.trim() && !isLoading) {
             setIsLoading(true);
@@ -47,28 +69,6 @@ const AssistantPanel: React.FC<AssistantPanelProps> = ({ messages, onSendMessage
                 setIsLoading(false);
             }
         }
-    };
-
-    const handleKeyPress = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            handleSendMessage();
-        }
-    };
-
-    const toggleVoiceInput = () => {
-        setIsListening(!isListening);
-        if (!isListening) {
-            setTimeout(() => {
-                setIsListening(false);
-                setInputMessage('Je voudrais prendre rendez-vous');
-            }, 2000);
-        }
-    };
-
-    const handleNewConversation = () => {
-        aiService.clearConversation();
-        onSendMessage("Nouvelle conversation démarrée.", false);
     };
 
     const handleCommand = async (message: string) => {

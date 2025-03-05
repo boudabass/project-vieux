@@ -38,6 +38,12 @@ interface Message {
     isUser: boolean;
 }
 
+const [contacts, setContacts] = useState<{ name: string; phone: string }[]>([]);
+
+const handleAddContact = (contact: { name: string, phone: string }) => {
+    setContacts(prevContacts => [...prevContacts, contact]);
+};
+
 function App() {
     const [activeService, setActiveService] = useState<string | null>(null);
     const [activePage, setActivePage] = useState<string | null>(null);
