@@ -168,6 +168,18 @@ function App() {
                                         />
                                     ))}
                                 </div>
+                                {activeService === 'communication' && (
+                                    <div className="mt-8">
+                                        <h3 className="text-2xl font-bold mb-4">Contacts</h3>
+                                        <ul>
+                                            {contacts.map((contact, index) => (
+                                                <li key={index} className="mb-2">
+                                                    <span className="font-bold">{contact.name}</span> - {contact.phone}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
                             </>
                         ) : (
                             <>
