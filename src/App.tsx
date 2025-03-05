@@ -122,6 +122,7 @@ function App() {
     };
 
     const handleAddContact = (contact: { name: string, phone: string }) => {
+        console.log("Ajout du contact :", contact);
         setContacts(prevContacts => [...prevContacts, contact]);
     };
 

@@ -70,6 +70,15 @@ const AssistantPanel: React.FC<AssistantPanelProps> = ({ messages, onSendMessage
         onSendMessage("Nouvelle conversation démarrée.", false);
     };
 
+    const handleCommand = async (message: string) => {
+        if (message.toLowerCase().includes("ajouter une personne à mes contacts")) {
+            const contact = { name: "Zaug Johnny", phone: "0689350464" }; // Exemple de données
+            onAddContact(contact);
+            return "Contact ajouté avec succès.";
+        }
+        return "";
+    };
+
     return (
         <div className="w-full md:w-2/5 bg-gray-100 flex flex-col h-[calc(100vh-144px)]">
             <div className="p-6 bg-primary text-white">
