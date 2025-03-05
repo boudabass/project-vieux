@@ -3,12 +3,8 @@ import {
     MessageSquare,
     Calendar,
     Heart,
-    Car,
-    DollarSign,
-    Camera,
     Shield,
     Volume2,
-    Mic,
     Settings,
     QrCode,
     ArrowLeft,
@@ -121,12 +117,7 @@ function App() {
     };
 
     const handleAddContact = (contact: { name: string, phone: string }) => {
-        console.log("Ajout du contact :", contact);
-        setContacts(prevContacts => {
-            const updatedContacts = [...prevContacts, contact];
-            console.log("Contacts mis à jour :", updatedContacts);
-            return updatedContacts;
-        });
+        setContacts(prevContacts => [...prevContacts, contact]);
     };
 
     const handleCommand = async (message: string): Promise<string> => {
@@ -161,6 +152,8 @@ function App() {
                         messages={messages}
                         onSendMessage={handleSendMessage}
                         onAddContact={handleAddContact}
+                        activeService={activeService}
+                        contacts={contacts}
                     />
 
                     {/* Services Panel (60%) */}

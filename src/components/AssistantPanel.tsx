@@ -11,9 +11,11 @@ interface AssistantPanelProps {
     messages: Message[];
     onSendMessage: (message: string, isUser: boolean) => void;
     onAddContact: (contact: { name: string, phone: string }) => void;
+    activeService: string | null;
+    contacts: { name: string; phone: string }[];
 }
 
-const AssistantPanel: React.FC<AssistantPanelProps> = ({ messages, onSendMessage, onAddContact }) => {
+const AssistantPanel: React.FC<AssistantPanelProps> = ({ messages, onSendMessage, onAddContact, activeService, contacts }) => {
     const [inputMessage, setInputMessage] = useState('');
     const [isListening, setIsListening] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -27,21 +29,20 @@ const AssistantPanel: React.FC<AssistantPanelProps> = ({ messages, onSendMessage
         if (inputMessage.trim() && !isLoading) {
             setIsLoading(true);
             const userMessage = inputMessage.trim();
-            onSendMessage(userMessage, true); // Envoyer le message de l'utilisateur à App.tsx
+            onSendMessage(userMessage, true);
             setInputMessage('');
 
             try {
-                // Vérifiez si le message est une commande
                 const commandResponse = await handleCommand(userMessage);
                 if (commandResponse) {
                     onSendMessage(commandResponse, false);
                 } else {
                     const response = await aiService.sendMessage(userMessage);
-                    onSendMessage(response, false); // Envoyer la réponse de l'IA à App.tsx
+                    onSendMessage(response, false);
                 }
             } catch (error) {
                 console.error('Error sending message:', error);
-                onSendMessage("Désolé, une erreur s'est produite. Veuillez réessayer.", false); // Envoyer le message d'erreur à App.tsx
+                onSendMessage("Désolé, une erreur s'est produite. Veuillez réessayer.", false);
             } finally {
                 setIsLoading(false);
             }
@@ -146,6 +147,19 @@ const AssistantPanel: React.FC<AssistantPanelProps> = ({ messages, onSendMessage
                     </button>
                 </div>
             </div>
+
+            {activeService === 'communication' && (
+                <div className="mt-8">
+                    <h3 className="text-2xl font-bold mb-4">Contacts</h3>
+                    <ul>
+                        {contacts.map((contact, index) => (
+                            <li key={index} className="mb-2">
+                                <span className="font-bold">{contact.name}</span> - {contact.phone}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     );
 };
