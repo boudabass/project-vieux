@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
     MessageSquare,
     Calendar,
@@ -129,7 +129,7 @@ function App() {
     const handleCommand = async (message: string) => {
         if (message.toLowerCase().includes("ajouter une personne à mes contacts")) {
             const contact = { name: "Zaug Johnny", phone: "0689350464" }; // Exemple de données
-            handleAddContact(contact);
+            handleAddContact(contact); // Utilisation de handleAddContact
             return "Contact ajouté avec succès.";
         }
         return "";
