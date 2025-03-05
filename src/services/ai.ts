@@ -106,6 +106,15 @@ export class AIService {
     }
   }
 
+  async handleCommand(message: string): Promise<string> {
+    if (message.toLowerCase().includes("ajouter une personne à mes contacts")) {
+      // Déclencher une série de questions pour ajouter un contact
+      return "D'accord, quel est le nom de la personne que vous souhaitez ajouter ?";
+    }
+    // Autres commandes peuvent être ajoutées ici
+    return "";
+  }
+
   getCurrentProvider(): AIProvider {
     return this.currentProvider;
   }

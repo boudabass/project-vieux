@@ -49,6 +49,7 @@ function App() {
     const [messages, setMessages] = useState<Message[]>([
         { text: "Bonjour ! Comment puis-je vous aider aujourd'hui ?", isUser: false }
     ]);
+    const [contacts, setContacts] = useState<{ name: string; phone: string }[]>([]);
 
     // Services principaux
     const mainServices = [
@@ -120,6 +121,10 @@ function App() {
         setActivePage(null);
     };
 
+    const handleAddContact = (contact: { name: string, phone: string }) => {
+        setContacts(prevContacts => [...prevContacts, contact]);
+    };
+
     // Render the active page or the main content
     const renderContent = () => {
         if (activePage === 'settings') {
@@ -133,6 +138,7 @@ function App() {
                     <AssistantPanel
                         messages={messages}
                         onSendMessage={handleMessage}
+                        onAddContact={handleAddContact}
                     />
 
                     {/* Services Panel (60%) */}

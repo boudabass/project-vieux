@@ -10,9 +10,10 @@ interface Message {
 interface AssistantPanelProps {
     messages: Message[];
     onSendMessage: (message: string, isUser: boolean) => void;
+    onAddContact: (contact: { name: string, phone: string }) => void;
 }
 
-const AssistantPanel: React.FC<AssistantPanelProps> = ({ messages, onSendMessage }) => {
+const AssistantPanel: React.FC<AssistantPanelProps> = ({ messages, onSendMessage, onAddContact }) => {
     const [inputMessage, setInputMessage] = useState('');
     const [isListening, setIsListening] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -30,8 +31,14 @@ const AssistantPanel: React.FC<AssistantPanelProps> = ({ messages, onSendMessage
             setInputMessage('');
 
             try {
-                const response = await aiService.sendMessage(userMessage);
-                onSendMessage(response, false); // Envoyer la réponse de l'IA à App.tsx
+                // Vérifiez si le message est une commande
+                const commandResponse = await aiService.handleCommand(userMessage);
+                if (commandResponse) {
+                    onSendMessage(commandResponse, false);
+                } else {
+                    const response = await aiService.sendMessage(userMessage);
+                    onSendMessage(response, false); // Envoyer la réponse de l'IA à App.tsx
+                }
             } catch (error) {
                 console.error('Error sending message:', error);
                 onSendMessage("Désolé, une erreur s'est produite. Veuillez réessayer.", false); // Envoyer le message d'erreur à App.tsx
