@@ -123,7 +123,11 @@ function App() {
 
     const handleAddContact = (contact: { name: string, phone: string }) => {
         console.log("Ajout du contact :", contact);
-        setContacts(prevContacts => [...prevContacts, contact]);
+        setContacts(prevContacts => {
+            const updatedContacts = [...prevContacts, contact];
+            console.log("Contacts mis à jour :", updatedContacts);
+            return updatedContacts;
+        });
     };
 
     // Render the active page or the main content
