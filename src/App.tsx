@@ -37,6 +37,7 @@ import ServiceCard from './components/ServiceCard';
 import AssistantPanel from './components/AssistantPanel';
 import SettingsPage from './pages/SettingsPage';
 import QrCodePage from './pages/QrCodePage';
+import { aiService } from './services/ai';
 
 interface Message {
     text: string;
@@ -130,6 +131,24 @@ function App() {
         });
     };
 
+    const handleCommand = async (message: string): Promise<string> => {
+        if (message.toLowerCase().includes("ajouter une personne à mes contacts")) {
+            return "D'accord, quel est le nom de la personne que vous souhaitez ajouter ?";
+        }
+        return "";
+    };
+
+    const handleSendMessage = async (message: string) => {
+        const commandResponse = await handleCommand(message);
+        if (commandResponse) {
+            setMessages(prev => [...prev, { text: commandResponse, isUser: false }]);
+        } else {
+            // Logique pour envoyer le message à l'IA
+            const response = await aiService.sendMessage(message);
+            setMessages(prev => [...prev, { text: response, isUser: false }]);
+        }
+    };
+
     // Render the active page or the main content
     const renderContent = () => {
         if (activePage === 'settings') {
@@ -142,7 +161,7 @@ function App() {
                     {/* Assistant Panel (40%) */}
                     <AssistantPanel
                         messages={messages}
-                        onSendMessage={handleMessage}
+                        onSendMessage={handleSendMessage}
                         onAddContact={handleAddContact}
                     />
 

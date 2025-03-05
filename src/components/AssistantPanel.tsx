@@ -1,4 +1,3 @@
-import React, { useState, useRef, useEffect } from 'react';
 import { Mic, Send, RefreshCw } from 'lucide-react';
 import { aiService } from '../services/ai';
 
@@ -32,7 +31,7 @@ const AssistantPanel: React.FC<AssistantPanelProps> = ({ messages, onSendMessage
 
             try {
                 // Vérifiez si le message est une commande
-                const commandResponse = await aiService.handleCommand(userMessage);
+                const commandResponse = await handleCommand(userMessage);
                 if (commandResponse) {
                     onSendMessage(commandResponse, false);
                 } else {
