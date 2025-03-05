@@ -1,3 +1,4 @@
+import React, { useState, useRef, useEffect } from 'react';
 import { Mic, Send, RefreshCw } from 'lucide-react';
 import { aiService } from '../services/ai';
 

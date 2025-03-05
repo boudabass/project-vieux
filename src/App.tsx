@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
     MessageSquare,
-    Video,
     Calendar,
     Heart,
     Car,
@@ -16,7 +15,6 @@ import {
     Home,
     Gamepad2,
     Phone,
-    Clock,
     Pill,
     CalendarClock,
     MessageCircle,
