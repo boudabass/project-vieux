@@ -18,7 +18,7 @@ const QrCodePage: React.FC<QrCodePageProps> = ({ onBack }) => {
         <div className="flex items-center mb-8">
           <button 
             onClick={onBack}
-            className="bg-blue-600 hover:bg-blue-800 text-white rounded-full p-3 mr-4"
+            className="bg-primary hover:bg-blue-500 text-white rounded-full p-3 mr-4"
             aria-label="Retour"
           >
             <ArrowLeft size={24} />
@@ -53,7 +53,7 @@ const QrCodePage: React.FC<QrCodePageProps> = ({ onBack }) => {
             ) : (
               <button 
                 onClick={() => setQrCodeGenerated(true)}
-                className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-xl font-bold"
+                className="flex items-center justify-center bg-primary hover:bg-blue-500 text-white px-8 py-4 rounded-lg text-xl font-bold"
               >
                 <UserPlus size={24} className="mr-3" />
                 Générer un QR Code
@@ -64,17 +64,17 @@ const QrCodePage: React.FC<QrCodePageProps> = ({ onBack }) => {
           {qrCodeGenerated && (
             <div className="space-y-4">
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="flex-1 flex items-center justify-center bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-lg text-xl font-medium">
+                <button className="flex-1 flex items-center justify-center bg-tertiary hover:bg-teal-500 text-white px-6 py-4 rounded-lg text-xl font-medium">
                   <Share2 size={24} className="mr-2" />
                   Partager
                 </button>
-                <button className="flex-1 flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-4 rounded-lg text-xl font-medium">
+                <button className="flex-1 flex items-center justify-center bg-secondary hover:bg-indigo-500 text-white px-6 py-4 rounded-lg text-xl font-medium">
                   <Download size={24} className="mr-2" />
                   Télécharger
                 </button>
               </div>
               
-              <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
+              <div className="bg-yellow-50 border-l-4 border-accent p-4 rounded">
                 <p className="text-lg text-yellow-700">
                   <strong>Instructions :</strong> Montrez ce QR code à la personne avec qui vous souhaitez vous connecter. 
                   Elle devra le scanner avec l'application Connecteur Social.
@@ -89,7 +89,7 @@ const QrCodePage: React.FC<QrCodePageProps> = ({ onBack }) => {
           <p className="text-xl text-gray-700 mb-6">
             Vous avez reçu un QR code d'un autre utilisateur ? Scannez-le pour vous connecter automatiquement.
           </p>
-          <button className="w-full flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-4 rounded-lg text-xl font-medium">
+          <button className="w-full flex items-center justify-center bg-accent hover:bg-orange-500 text-white px-6 py-4 rounded-lg text-xl font-medium">
             <Camera size={24} className="mr-2" />
             Ouvrir le scanner
           </button>

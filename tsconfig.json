@@ -1,19 +1,7 @@
 {
   "files": [],
   "references": [
-    { "path": "./tsconfig.app.json", "composite": true },
-    { "path": "./tsconfig.node.json", "composite": true }
-  ],
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "target": "ES2020",
-    "module": "ESNext",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "strict": true,
-    "skipLibCheck": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
-  },
-  "include": ["src"]
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }
