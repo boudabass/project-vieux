@@ -70,7 +70,7 @@ export class AIService {
 
         response = completion.choices[0]?.message?.content || "Désolé, je n'ai pas pu générer une réponse.";
       } else if (this.currentProvider === 'gemini' && this.gemini) {
-        const model = this.gemini.getGenerativeModel({ model: "gemini-pro" });
+        const model = this.gemini.getGenerativeModel({ model: "gemini-2.0-flash-lite" });
         
         // For Gemini, we need to format the conversation history as a single context string
         const conversationContext = this.conversationHistory
