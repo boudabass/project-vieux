@@ -250,7 +250,7 @@ function App() {
             {/* Footer */}
             <footer className="bg-gray-800 text-white p-4">
                 <div className="container mx-auto text-center">
-                    <p className="text-xl">Connecteur Social Senior-Tech © 2025</p>
+                    <p className="text-xl">Connecteur Social Senior-Tech © 2025 Zaug Johnny</p>
                 </div>
             </footer>
         </div>
