@@ -155,8 +155,7 @@ function App() {
                         onAddContact={handleAddContact}
                         activeService={activeService}
                         contacts={contacts}
-                    >
-                    </AssistantPanel>
+                    />
 
                     {/* Services Panel (60%) */}
                     <div className="w-full md:w-3/5 p-6 bg-white">
